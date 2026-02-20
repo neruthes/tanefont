@@ -1,0 +1,371 @@
+# This is an automatically generated mapping file. Do not edit.
+#       $   node src/gen-map01.js
+
+[[char]]
+name = "0x23"
+text = "#"
+
+[[char]]
+name = "0x24"
+text = "$"
+
+[[char]]
+name = "0x25"
+text = "%"
+
+[[char]]
+name = "0x26"
+text = "&"
+
+[[char]]
+name = "0x27"
+text = "'"
+
+[[char]]
+name = "0x28"
+text = "("
+
+[[char]]
+name = "0x29"
+text = ")"
+
+[[char]]
+name = "0x2a"
+text = "*"
+
+[[char]]
+name = "0x2b"
+text = "+"
+
+[[char]]
+name = "0x2c"
+text = ","
+
+[[char]]
+name = "0x2d"
+text = "-"
+
+[[char]]
+name = "0x2e"
+text = "."
+
+[[char]]
+name = "0x2f"
+text = "/"
+
+[[char]]
+name = "0x30"
+text = "0"
+
+[[char]]
+name = "0x31"
+text = "1"
+
+[[char]]
+name = "0x32"
+text = "2"
+
+[[char]]
+name = "0x33"
+text = "3"
+
+[[char]]
+name = "0x34"
+text = "4"
+
+[[char]]
+name = "0x35"
+text = "5"
+
+[[char]]
+name = "0x36"
+text = "6"
+
+[[char]]
+name = "0x37"
+text = "7"
+
+[[char]]
+name = "0x38"
+text = "8"
+
+[[char]]
+name = "0x39"
+text = "9"
+
+[[char]]
+name = "0x3a"
+text = ":"
+
+[[char]]
+name = "0x3b"
+text = ";"
+
+[[char]]
+name = "0x3c"
+text = "&lt;"
+
+[[char]]
+name = "0x3d"
+text = "="
+
+[[char]]
+name = "0x3e"
+text = ">"
+
+[[char]]
+name = "0x3f"
+text = "?"
+
+[[char]]
+name = "0x40"
+text = "@"
+
+[[char]]
+name = "0x41"
+text = "A"
+
+[[char]]
+name = "0x42"
+text = "B"
+
+[[char]]
+name = "0x43"
+text = "C"
+
+[[char]]
+name = "0x44"
+text = "D"
+
+[[char]]
+name = "0x45"
+text = "E"
+
+[[char]]
+name = "0x46"
+text = "F"
+
+[[char]]
+name = "0x47"
+text = "G"
+
+[[char]]
+name = "0x48"
+text = "H"
+
+[[char]]
+name = "0x49"
+text = "I"
+
+[[char]]
+name = "0x4a"
+text = "J"
+
+[[char]]
+name = "0x4b"
+text = "K"
+
+[[char]]
+name = "0x4c"
+text = "L"
+
+[[char]]
+name = "0x4d"
+text = "M"
+
+[[char]]
+name = "0x4e"
+text = "N"
+
+[[char]]
+name = "0x4f"
+text = "O"
+
+[[char]]
+name = "0x50"
+text = "P"
+
+[[char]]
+name = "0x51"
+text = "Q"
+
+[[char]]
+name = "0x52"
+text = "R"
+
+[[char]]
+name = "0x53"
+text = "S"
+
+[[char]]
+name = "0x54"
+text = "T"
+
+[[char]]
+name = "0x55"
+text = "U"
+
+[[char]]
+name = "0x56"
+text = "V"
+
+[[char]]
+name = "0x57"
+text = "W"
+
+[[char]]
+name = "0x58"
+text = "X"
+
+[[char]]
+name = "0x59"
+text = "Y"
+
+[[char]]
+name = "0x5a"
+text = "Z"
+
+[[char]]
+name = "0x5b"
+text = "["
+
+[[char]]
+name = "0x5c"
+text = "\\"
+
+[[char]]
+name = "0x5d"
+text = "]"
+
+[[char]]
+name = "0x5e"
+text = "^"
+
+[[char]]
+name = "0x5f"
+text = "_"
+
+[[char]]
+name = "0x60"
+text = "`"
+
+[[char]]
+name = "0x61"
+text = "a"
+
+[[char]]
+name = "0x62"
+text = "b"
+
+[[char]]
+name = "0x63"
+text = "c"
+
+[[char]]
+name = "0x64"
+text = "d"
+
+[[char]]
+name = "0x65"
+text = "e"
+
+[[char]]
+name = "0x66"
+text = "f"
+
+[[char]]
+name = "0x67"
+text = "g"
+
+[[char]]
+name = "0x68"
+text = "h"
+
+[[char]]
+name = "0x69"
+text = "i"
+
+[[char]]
+name = "0x6a"
+text = "j"
+
+[[char]]
+name = "0x6b"
+text = "k"
+
+[[char]]
+name = "0x6c"
+text = "l"
+
+[[char]]
+name = "0x6d"
+text = "m"
+
+[[char]]
+name = "0x6e"
+text = "n"
+
+[[char]]
+name = "0x6f"
+text = "o"
+
+[[char]]
+name = "0x70"
+text = "p"
+
+[[char]]
+name = "0x71"
+text = "q"
+
+[[char]]
+name = "0x72"
+text = "r"
+
+[[char]]
+name = "0x73"
+text = "s"
+
+[[char]]
+name = "0x74"
+text = "t"
+
+[[char]]
+name = "0x75"
+text = "u"
+
+[[char]]
+name = "0x76"
+text = "v"
+
+[[char]]
+name = "0x77"
+text = "w"
+
+[[char]]
+name = "0x78"
+text = "x"
+
+[[char]]
+name = "0x79"
+text = "y"
+
+[[char]]
+name = "0x7a"
+text = "z"
+
+[[char]]
+name = "0x7b"
+text = "{"
+
+[[char]]
+name = "0x7c"
+text = "|"
+
+[[char]]
+name = "0x7d"
+text = "}"
+
+[[char]]
+name = "0x7e"
+text = "~"
+
