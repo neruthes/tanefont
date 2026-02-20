@@ -6,9 +6,7 @@
 
   #set text(font: ("TeX Gyre Heros", "Noto Sans CJK SC"), size: 13pt, kerning: false)
 
-  #let tanefont_json = json("../build/demo01/final.json")
-
-  // #tanefont_json
+  #let font_def_demo01 = json("../build/demo01/final.json")
 
 
   #let tanefont__svg_for_char(obj, height: 1em) = {
@@ -32,22 +30,31 @@
         ),
     )))
   }
-  #let tanefont__render_char(it) = {
+  #let tanefont__render_char(it, font_dict: (:)) = {
     if it == " " {
       return [ ]
     }
     let cp_int = it.codepoints().map(str.to-unicode).first()
-    if tanefont_json.at(str(cp_int), default: none) != none {
-      // [(!)]
-      tanefont__svg_for_char(tanefont_json.at(str(cp_int)))
+    if font_dict.at(str(cp_int), default: none) != none {
+      tanefont__svg_for_char(font_dict.at(str(cp_int)))
     } else {
       it
-      // it.codepoints().join()
     }
   }
-  #let tanefont__render_string(input_str) = {
-    input_str.clusters().map(tanefont__render_char).join()
-    // [#input_str.clusters().map(it => str(it.codepoints().map(str.to-unicode).first()))]
+  #let tanefont__render_string(input_str, font_dict: (:)) = {
+    input_str.clusters().map(it => tanefont__render_char(it, font_dict: font_dict)).join()
+  }
+  #let tanefont__render_string_fromRegexShowRule(input_str, font_dict: (:)) = {
+    input_str.text.clusters().map(it => tanefont__render_char(it, font_dict: font_dict)).join()
+  }
+
+
+  #let show_rule_use_svg_font(font_dict) = {
+    let __real_show_rule(doc) = context {
+      show regex("[0-9A-Za-z]+"): it => box(tanefont__render_string_fromRegexShowRule(it, font_dict: font_dict))
+      doc
+    }
+    return __real_show_rule
   }
 
 
@@ -55,13 +62,26 @@
 
   #{
     set text(size: 30pt)
-    tanefont__render_string("Hello World #$%")
+    tanefont__render_string(font_dict: font_def_demo01, "Hello World #$%")
     text(font: "TeX Gyre Termes")[\#\$% Hello World]
     linebreak()
     text(font: "TeX Gyre Termes")[Hello World \#\$%]
   }
 
-  #tanefont_json
+
+  #set par(justify: true)
+  #[
+    #show: show_rule_use_svg_font(font_def_demo01)
+    Using a show rule to render these words... \
+    Hello World #lorem(55)
+  ]
+
+  #[
+    And using a normal font... \
+    Hello World #lorem(55)
+  ]
+
+  #font_def_demo01
 
 
 
