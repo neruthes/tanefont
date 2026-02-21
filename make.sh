@@ -8,7 +8,7 @@ function _die() {
 [[ -z "$1" ]] && _die 1 "[FATAL] Must specify a task by TOML file path!"
 [[ ! -e "$1" ]] && _die 1 "[FATAL] Task not found!"
 
-task_file_path="$1"
+export task_file_path="$1"
 task_id="$(basename "$task_file_path" | sed s/.toml$//)"
 echo "Working on $task_file_path ($task_id)"
 
@@ -29,6 +29,9 @@ tomlq -r . "$map_file_src" > "$BUILD_DIR/map.json"
 
 export svg_outline_convert_bin_path="$(which svg-text-to-outline.sh)"
 node src/make-svg-raw.js
+
+bash src/combine-glyphs-kerning.sh "$BUILD_DIR" "$task_file_path"
+
 
 
 ### TODO: Use inkscape to convert to outline

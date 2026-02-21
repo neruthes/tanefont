@@ -1,4 +1,5 @@
-
+#let debug_mode = state("debug_mode", false)
+#debug_mode.update(false)
 
 
 
@@ -6,7 +7,7 @@
   let glyph_width = obj.at("w") * 2
   let base_margin_h = 4.5
   let full_width = base_margin_h + obj.at("w")
-  box(inset: (top: -0.073em, bottom: -0.15em, left: 0.00em + 0.001em * kerning_value, right: 0.00em), image(
+  box(inset: (top: -0.073em, bottom: -0.2354em, left: 0.00em + 0.001em * kerning_value, right: 0.00em), image(
     height: height,
     bytes(
       "<svg xmlns='http://www.w3.org/2000/svg' viewBox='-@SEMIWID -110 @FULLWID 145'>
@@ -28,36 +29,43 @@
     ),
   ))
 }
-#let tanefont__render_char(it, left_char: none, font_dict: (:), kerning_table: (:)) = {
+#let tanefont__render_char(it, left_char: none, font_dict: (glypgs: (:), kerning_table: (:))) = {
   if it == " " {
     return [ ]
     // return [#((left_char: left_char, it: it))] // Debug
   }
-  let kerning_value = if left_char != none {
-    kerning_table.at(left_char + "::" + it, default: 0)
-  } else { 0 }
+
+  // If left_char is not given, use the left-edge kerning number
+  let entry_key = left_char + "::" + it
+  if left_char == it {
+    entry_key = it
+  }
+  let kerning_value = font_dict.kerning_table.at(entry_key, default: 0)
 
   let cp_int = it.codepoints().map(str.to-unicode).first()
-  if font_dict.at(str(cp_int), default: none) != none {
-    tanefont__svg_for_char(font_dict.at(str(cp_int)), kerning_value: kerning_value)
+  if font_dict.glyphs.at(str(cp_int), default: none) != none {
+    tanefont__svg_for_char(font_dict.glyphs.at(str(cp_int)), kerning_value: kerning_value)
+    context if debug_mode.get() {
+      text(size: 9pt, [[#raw(entry_key)]])
+      text(size: 9pt, [[#raw(str(kerning_value))]])
+    }
   } else {
-    it
+    it // If glyph is not found, print a literal character and leave it for Typst runtime to decide
   }
 }
-#let tanefont__render_string(input_str, font_dict: (:), kerning_table: (:)) = {
-  input_str.clusters().map(it => tanefont__render_char(it, font_dict: font_dict, kerning_table: kerning_table)).join()
+#let tanefont__render_string(input_str, font_dict: (kerning_table: (:))) = {
+  input_str.clusters().map(it => tanefont__render_char(it, font_dict: font_dict)).join()
 }
-#let tanefont__render_string_fromRegexShowRule(input_str, font_dict: (:), kerning_table: (:)) = {
+#let tanefont__render_string_fromRegexShowRule(input_str, font_dict: (kerning_table: (:))) = {
   let clusters = input_str.text.clusters()
   clusters
     .enumerate()
     .map(((i, ch)) => {
-      let left_char = if i == 0 { none } else { clusters.at(i - 1) }
+      let left_char = if i == 0 { "<<" } else { clusters.at(i - 1) } // Use magic value "<<" to represent null left_char
       tanefont__render_char(
         ch,
         left_char: left_char,
         font_dict: font_dict,
-        kerning_table: kerning_table,
       )
     })
     .join()
@@ -67,10 +75,10 @@
 
 
 
-#let show-tanefont-use-svg-font(font_dict: (:), kerning_table: (:)) = {
+#let show-tanefont-use-svg-font(font_dict: (kerning_table: (:))) = {
   let __real_show_rule(doc) = context {
     show regex("[0-9A-Za-z\?\!\.\-=\!@#\$%\^:;\'\"\[\]\{\}\(\)\+\*]+"): it => box(
-      tanefont__render_string_fromRegexShowRule(it, font_dict: font_dict, kerning_table: kerning_table),
+      tanefont__render_string_fromRegexShowRule(it, font_dict: font_dict),
     )
     doc
   }
